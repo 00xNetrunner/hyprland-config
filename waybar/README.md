@@ -1,1 +1,0 @@
-# hyperland-config
