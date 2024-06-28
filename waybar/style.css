@@ -1,187 +1,128 @@
-@import "./rose-pine.css";
-
 * {
-  /* https://docs.gtk.org/gtk3/css-overview.html#colors */
-  color: @text;
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 12pt;
-  font-weight: bold;
-  border-radius: 8px;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-}
-
-@keyframes blink_red {
-  to {
-    background-color: @love;
-    color: @base;
-  }
-}
-
-.warning,
-.critical,
-.urgent {
-  animation-name: blink_red;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: Material Design Icons, JetBrainsMono Nerd Font;
+  font-size: 13px;
 }
 
 window#waybar {
   background-color: transparent;
-  border: 2px solid alpha(@highlightHigh, 0.3);
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
-window > box {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-  background-color: shade(@base, 0.9);
-  padding: 3px;
-  padding-left: 8px;
-  border: 2px none @foam;
+window#waybar.hidden {
+  opacity: 0.5;
 }
 
 #workspaces {
-  padding-left: 0px;
-  padding-right: 4px;
+  background-color: transparent;
+  border-radius: 4px;
 }
 
 #workspaces button {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 6px;
-  padding-right: 6px;
+  all: initial; /* Remove GTK theme values (waybar #1351) */
+  min-width: 0; /* Fix weird spacing in materia (waybar #450) */
+  margin: 6px 0px;
+  border-radius: 4px;
+  padding: 0px 14px;
+  color: #EBDBB2;
 }
 
 #workspaces button.active {
-  background-color: @foam;
-  color: @base;
-}
-
-#workspaces button.urgent {
-  color: @base;
+  color: #EBDBB2;
+  background-color: #458588;
 }
 
 #workspaces button:hover {
-  background-color: @gold;
-  color: @base;
+ background-color: #454545;
 }
 
-tooltip {
-  background: @overlay;
+#workspaces button.urgent {
+  color: #fb4934
 }
 
-tooltip label {
-  color: @text;
-}
-
-#custom-launcher {
-  font-size: 20px;
-  padding-left: 8px;
-  padding-right: 6px;
-  color: @foam;
-}
-
-#mode,
-#clock,
 #memory,
-#temperature,
-#cpu,
-#mpd,
-#custom-wall,
-#temperature,
+#custom-power,
+#battery,
 #backlight,
 #pulseaudio,
 #network,
-#battery,
-#custom-powermenu {
-  padding-left: 10px;
-  padding-right: 10px;
+#clock,
+#tray {
+  border-radius: 4px;
+  margin: 6px 3px;
+  padding: 6px 12px;
+  background-color: #282828;
+  color: #EBDBB2;
 }
 
+#custom-power {
+  margin-right: 6px;
+}
+
+#custom-logo {
+  padding-right: 7px;
+  padding-left: 7px;
+  margin-left: 5px;
+  font-size: 16px;
+  border-radius: 8px 0px 0px 8px;
+  color: #EBDBB2
+}
 #memory {
-  color: @foam;
+  background-color: #fe8019;
 }
-
-#cpu {
-  color: @rose;
-}
-
-#clock {
-  color: @text;
-}
-
-#idle_inhibitor {
-  color: @iris;
-  padding-right: 8px;
-}
-
 #battery {
-  min-width: 55px;
-  color: @foam;
+  background-color: #689d6a;
+}
+@keyframes blink {
+  to {
+    background-color: #8ec07c;
+    color: #181825;
+  }
 }
 
-#battery.charging,
-#battery.full,
-#battery.plugged {
-  color: @pine;
-}
-
-#battery.critical:not(.charging) {
-  color: @love;
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+  background-color: #ff0048;
+  color: #181825;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-
-#custom-wall {
-  color: @foam;
-}
-
-#temperature {
-  color: @foam;
+#battery.charging {
+  background-color: #689d6a;
 }
 
 #backlight {
-  color: @gold;
+  background-color: #98971a;
 }
 
 #pulseaudio {
-  color: @rose;
+  background-color: #d79921;
 }
 
-#network {
-  color: @foam;
+#clock {
+  font-family: JetBrainsMono Nerd Font;
+  background-color: #8f3f71;
 }
 
-#network.disconnected {
-  color: @text;
+#custom-power {
+  background-color: #cc241d;
 }
 
-#custom-powermenu {
-  color: @love;
-  padding-right: 8px;
+
+tooltip {
+border-radius: 8px;
+padding: 15px;
+background-color: #1d2021;
 }
 
-#tray {
-  padding-right: 8px;
-  padding-left: 10px;
+tooltip label {
+padding: 5px;
+background-color: #1d2021;
 }
-
-#mpd.paused {
-  color: @muted;
-  font-style: italic;
-}
-
-#mpd.stopped {
-  background: transparent;
-}
-
-#mpd {
-  color: @text;
-}
-
